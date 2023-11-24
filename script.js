@@ -86,8 +86,7 @@ async function fetchDataById(categoryId = 1000) {
                       <p class="lh-1 fw-medium">${authors?.profile_name}
                       <span>
                        ${
-                         authors?.verified !== "" &&
-                         authors?.verified !== undefined
+                         authors?.verified !== "" && authors?.verified !== false
                            ? `
                        <img src="./verifyIcon.png" width="14px" height="14px"/>
                        `
@@ -112,19 +111,14 @@ async function fetchDataById(categoryId = 1000) {
 
                 `;
     }
-
-    console.log(`Data for category ${categoryId}:`, categoryData);
   } catch (error) {
     console.error("Error fetching category data:", error);
   }
 }
 
 function categoryButton(categoryData) {
-  console.log("Category Data:", categoryData);
-
   const categoryContainer = document.getElementById("category");
 
-  // Check if categoryData is an array before using forEach
   if (Array.isArray(categoryData?.data)) {
     categoryData?.data.forEach((category) => {
       const div = document.createElement("div");
@@ -154,6 +148,5 @@ fetchData();
 fetchDataById();
 
 document.getElementById("blogButton").addEventListener("click", function () {
-  // Redirect to another HTML page
   window.location.href = "./blog.html";
 });
