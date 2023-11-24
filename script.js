@@ -83,7 +83,18 @@ async function fetchDataById(categoryId = 1000) {
                       <h6 class="card-title fw-semibold">
                        ${data?.title}
                       </h6>
-                      <p class="lh-1 fw-medium">${authors?.profile_name}</p>
+                      <p class="lh-1 fw-medium">${authors?.profile_name}
+                      <span>
+                       ${
+                         authors?.verified !== "" &&
+                         authors?.verified !== undefined
+                           ? `
+                       <img src="./verifyIcon.png" width="14px" height="14px"/>
+                       `
+                           : ``
+                       }
+                      </span>
+                      </p>
                       <p class="fs-6">${data?.others?.views} Views</p>
                     </div>
                   </div>
@@ -141,3 +152,8 @@ function categoryButton(categoryData) {
 // Call the fetchData function
 fetchData();
 fetchDataById();
+
+document.getElementById("blogButton").addEventListener("click", function () {
+  // Redirect to another HTML page
+  window.location.href = "./blog.html";
+});
